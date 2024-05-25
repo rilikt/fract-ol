@@ -6,18 +6,30 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:09:00 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/25 15:21:37 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:41:48 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRAC_H
 # define FRAC_H
 
-#include "libft/libft.a"
-#include "mlx/libmlx.a"
+#include "libft/libft.h"
+#include "mlx/mlx.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+void init_window(void);
+void better_pixel_put (t_data *data, int x, int y, int color);
 
 
 #endif

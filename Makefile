@@ -6,23 +6,23 @@
 #    By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 12:29:08 by timschmi          #+#    #+#              #
-#    Updated: 2024/05/25 15:17:31 by timschmi         ###   ########.fr        #
+#    Updated: 2024/05/25 15:51:17 by timschmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRCS = main.c
+SRCS = main.c window.c
 OFILES = $(SRCS:.c=.o)
-NAME = fract-ol
+NAME = fract_ol
 EXES = $(NAME)
 
 SUBDIRS = mlx/ libft/
 
-LDFLAGS= -L./libft -lft -L./ft_printf -lftprintf
+LDFLAGS= -L./libft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 
 all: $(SUBDIRS) $(EXES)
 
@@ -30,7 +30,7 @@ $(SUBDIRS):
 	$(MAKE) -C $@
 
 $(EXES): $(OFILES)
-	cc $(CFLAGS) -o $(NAME) $(OFILES) -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
