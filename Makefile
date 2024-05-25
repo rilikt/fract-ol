@@ -6,12 +6,12 @@
 #    By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 12:29:08 by timschmi          #+#    #+#              #
-#    Updated: 2024/05/25 15:51:17 by timschmi         ###   ########.fr        #
+#    Updated: 2024/05/25 18:44:39 by timschmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRCS = main.c window.c
+SRCS = main.c window.c mandelbrot.c
 OFILES = $(SRCS:.c=.o)
 NAME = fract_ol
 EXES = $(NAME)

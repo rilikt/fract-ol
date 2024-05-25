@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:10:27 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/25 15:53:37 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/25 18:44:20 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int main(int argc, char **argv)
 	if (argc == 2)
 	{
 		//Mandelbrot
-		init_window();
+		// init_window();
+		mandelbrot();
 	}
 	else if (argc == 4)
 	{

@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:09:00 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/25 17:41:48 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/25 18:54:22 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+typedef struct s_plane {
+	double x;
+	double y;
+} t_plane;
+
 void init_window(void);
 void better_pixel_put (t_data *data, int x, int y, int color);
+void mandelbrot();
 
 
 #endif
