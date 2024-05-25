@@ -1,0 +1,50 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/30 12:29:08 by timschmi          #+#    #+#              #
+#    Updated: 2024/05/25 15:17:31 by timschmi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+SRCS = main.c
+OFILES = $(SRCS:.c=.o)
+NAME = fract-ol
+EXES = $(NAME)
+
+SUBDIRS = mlx/ libft/
+
+LDFLAGS= -L./libft -lft -L./ft_printf -lftprintf
+
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror
+
+all: $(SUBDIRS) $(EXES)
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+
+$(EXES): $(OFILES)
+	cc $(CFLAGS) -o $(NAME) $(OFILES) -Lmlx -lmlx -lz -framework OpenGL -framework AppKit
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+clean:
+	$(MAKE) -C libft/ clean
+	$(MAKE) -C mlx/ clean
+	rm -f $(OFILES)
+
+fclean: clean
+	$(MAKE) -C libft/ fclean
+	$(MAKE) -C mlx/ clean
+	rm -f $(EXES)
+
+re: fclean all
+
+.PHONY:  all clean fclean re $(SUBDIRS)
