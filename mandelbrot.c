@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:32:09 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/25 20:20:22 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/26 19:05:17 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,41 +48,36 @@ int generate_color(int iter, int max_iter)
 	return (color_palette[index_palette]);
 }
 
-void mandelbrot()
+void mandelbrot(t_frac *c, t_mlx *mlx)
 {
-	// x^2 - y^2 + 2xyi
-
-	void	*mlx;
-	void	*mlx_win;
-	int color;
-	int max_iter = 100;
+	// x^2 - y^2 + 2xyi 
+	printf("entered\n");
+	printf("%p\n", mlx);
 	t_data	img;
+	int max_iter = 100;
+	int pixel_y = 0;
+	int pixel_x = 0;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1000, 1000, "Mandelbrot");
-	img.img = mlx_new_image(mlx, 1000, 1000);
+	img.img = mlx_new_image(mlx->ptr, 1000, 1000);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-
-	t_plane c;
-
-	int pixel_x = 0;
-	int pixel_y = 0;
 
 	while (pixel_x < 1000)
 	{
 		pixel_y = 0;
 		while (pixel_y < 1000)
 		{
-			c.x = -2 + pixel_x * (2.5 / 1000.0);
-			c.y = 2 - pixel_y * (4.0 / 1000.0);
-			int iter = calc_point(&c , max_iter);
-			color = generate_color(iter , max_iter);
-			better_pixel_put(&img, pixel_x, pixel_y, color);
+			c->x = -2 + pixel_x * (4.0 / 1000.0);
+			c->y = 2 - pixel_y * (4.0 / 1000.0);
+			int iter = calc_point(c , max_iter);
+			img.color = generate_color(iter , max_iter);
+			better_pixel_put(&img, pixel_x, pixel_y, img.color);
 			pixel_y++;
 		}
 		pixel_x++;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, img.img, 0, 0);
+	
+	printf("%p\n", mlx);
+
 }
