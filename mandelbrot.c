@@ -6,13 +6,13 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:32:09 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/27 12:12:56 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:38:51 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "frac.h"
 
-int calc_point(t_frac *c, int max_iter)
+int calc_point(t_frac *c, t_mlx *mlx)
 {
 	int i = 0;
 	t_frac z, temp;
@@ -20,7 +20,7 @@ int calc_point(t_frac *c, int max_iter)
 	z.x = 0;
 	z.y = 0;
 
-	while (i < max_iter)
+	while (i < mlx->max_iter)
 	{
 		temp = z;
 		z.x = (z.x * z.x) - (z.y * z.y) + c->x;
@@ -32,20 +32,27 @@ int calc_point(t_frac *c, int max_iter)
 	return (i);
 }
 
-int generate_color(int iter, int max_iter)
+int generate_color(int iter, t_mlx *mlx)
 {
-	if (iter == max_iter)
+	if (iter == mlx->max_iter)
 		return (0);
 	
-	int color_palette[16] = {	0xFF0000, 0xFF7F00, 0xFFFF00, 0x7FFF00,
-								0x00FF00, 0x00FF7F, 0x00FFFF, 0x007FFF,
-								0x0000FF, 0x7F00FF, 0xFF00FF, 0xFF007F,
-								0xFFFFFF, 0xC0C0C0, 0x808080, 0x404040
-							};
+	return (0xFFFFFF * iter/mlx->max_iter);
+}
 
-	int index_palette = (iter * 16) / max_iter;
+void map_and_zoom(t_mlx *mlx)
+{
+	double off_x = (mlx->mouse_x * (4.0 / 1000.0) -2) / mlx->zoom + mlx->mv_x;
+	double off_y = (mlx->mouse_y * (4.0 / 1000.0) -2) / mlx->zoom + mlx->mv_y;
 
-	return (color_palette[index_palette]);
+	mlx->zoom *= mlx->zoom_fac;
+
+	mlx->mv_x = off_x - (mlx->mouse_x * (4.0 / 1000.0) -2) / mlx->zoom;
+	mlx->mv_y = off_y - (mlx->mouse_y * (4.0 / 1000.0) -2) / mlx->zoom;
+
+
+	// printf("x:%f y: %f\n", mlx->mv_x, mlx->mv_y);
+
 }
 
 void mandelbrot(t_frac *c, t_mlx *mlx)
@@ -54,7 +61,6 @@ void mandelbrot(t_frac *c, t_mlx *mlx)
 	printf("entered\n");
 	printf("%p\n", mlx);
 	t_data	img;
-	int max_iter = 100;
 	int pixel_y = 0;
 	int pixel_x = 0;
 
@@ -67,10 +73,10 @@ void mandelbrot(t_frac *c, t_mlx *mlx)
 		pixel_y = 0;
 		while (pixel_y < 1000)
 		{
-			c->x = (-2 + pixel_x * (4.0 / 1000.0)) * mlx->zoom;
-			c->y = (2 - pixel_y * (4.0 / 1000.0)) * mlx->zoom;
-			int iter = calc_point(c , max_iter);
-			img.color = generate_color(iter , max_iter);
+			c->x = ((pixel_x * (4.0 / 1000.0) - 2) / mlx->zoom + mlx->mv_x);
+			c->y = ((pixel_y * (4.0 / 1000.0) - 2) / mlx->zoom + mlx->mv_y);
+			int iter = calc_point(c , mlx);
+			img.color = generate_color(iter , mlx);
 			better_pixel_put(&img, pixel_x, pixel_y, img.color);
 			pixel_y++;
 		}
