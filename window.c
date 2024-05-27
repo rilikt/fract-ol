@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:49:29 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/26 19:05:06 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:10:26 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int init_window()
 	t_mlx mlx;
 	t_frac c;
 
+	mlx.zoom = 1;
 	mlx.ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.ptr, 1000, 1000, "Mandelbrot");
 	hooks (&mlx);

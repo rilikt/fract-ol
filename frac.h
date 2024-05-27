@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:09:00 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/26 19:05:30 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:09:32 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ typedef struct	s_data {
 typedef struct s_mlx {
 	void *ptr;
 	void *win;
+	double zoom;
 }	t_mlx;
 
 typedef struct s_plane {
 	double x;
 	double y;
-	double zoom;
 } t_frac;
 
 int init_window();
 void better_pixel_put (t_data *data, int x, int y, int color);
 void mandelbrot(t_frac *c, t_mlx *mlx);
-int mouse_event(int keycode, t_mlx *mlx);
+int mouse_event(int keycode, int x, int y, t_mlx *mlx);
 void hooks(t_mlx *mlx);
 
 #endif

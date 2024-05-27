@@ -6,16 +6,16 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:32:09 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/26 19:05:17 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:12:56 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "frac.h"
 
-int calc_point(t_plane *c, int max_iter)
+int calc_point(t_frac *c, int max_iter)
 {
 	int i = 0;
-	t_plane z, temp;
+	t_frac z, temp;
 
 	z.x = 0;
 	z.y = 0;
@@ -67,8 +67,8 @@ void mandelbrot(t_frac *c, t_mlx *mlx)
 		pixel_y = 0;
 		while (pixel_y < 1000)
 		{
-			c->x = -2 + pixel_x * (4.0 / 1000.0);
-			c->y = 2 - pixel_y * (4.0 / 1000.0);
+			c->x = (-2 + pixel_x * (4.0 / 1000.0)) * mlx->zoom;
+			c->y = (2 - pixel_y * (4.0 / 1000.0)) * mlx->zoom;
 			int iter = calc_point(c , max_iter);
 			img.color = generate_color(iter , max_iter);
 			better_pixel_put(&img, pixel_x, pixel_y, img.color);
