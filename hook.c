@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:03:40 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/28 13:05:44 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:28:49 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int mouse_event(int keycode, int x, int y, t_mlx *mlx)
 		mlx->mouse_x = x;
 		mlx->mouse_y = y;
 		mlx->zoom_fac = 1.2;
+		map_and_zoom(mlx);
 	}
 	else if (keycode == 5)
 	{
 		mlx->mouse_x = x;
 		mlx->mouse_y = y;
-		mlx->zoom_fac = 0.8;
+		mlx->zoom *= 0.8;
 	}
-	map_and_zoom(mlx);
 	mandelbrot(mlx);
 	return (0);
 }
@@ -45,9 +45,9 @@ int arrow_event(int keycode, t_mlx *mlx)
 	// printf("code: %d\n", keycode);
 	
 	if (keycode == 125)
-		mlx->mv_y += 0.25 / mlx->zoom;
-	else if (keycode == 126)
 		mlx->mv_y -= 0.25 / mlx->zoom;
+	else if (keycode == 126)
+		mlx->mv_y += 0.25 / mlx->zoom;
 	else if (keycode == 124)
 		mlx->mv_x += 0.25 / mlx->zoom;
 	else if (keycode == 123)
@@ -59,10 +59,17 @@ int arrow_event(int keycode, t_mlx *mlx)
 		mlx->mv_y = 0;
 		mlx->max_iter = 20;
 	}
-	else if (keycode == 88)
-		mlx->color -= 1;
 	else if (keycode == 92)
+	{
+		if (mlx->color != 0)
+			mlx->color -= 1;
+	}
+	else if (keycode == 88)
+	{
+		if (mlx->color >= 15)
+			return(0);
 		mlx->color += 1;
+	}
 	else if (keycode == 69 || keycode == 78)
 	{
 		if (keycode == 69)
@@ -71,12 +78,7 @@ int arrow_event(int keycode, t_mlx *mlx)
 			mlx->max_iter -= 10;
 	}
 	else if (keycode == 53)
-	{
-		// mlx_destroy_image(mlx->ptr, mlx->img);
-		mlx_destroy_window(mlx->ptr, mlx->win);
-		free(mlx->ptr);
-		exit(1);
-	}
+		exit_window(mlx);
 	mandelbrot(mlx);
 	return (0);
 }
