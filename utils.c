@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 15:10:27 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/28 13:05:10 by timschmi         ###   ########.fr       */
+/*   Created: 2024/05/28 11:31:13 by timschmi          #+#    #+#             */
+/*   Updated: 2024/05/28 13:19:03 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "frac.h"
 
-int main(int argc, char **argv)
+double	ft_atod(char *str)
 {
-	
-	if (argc == 2 && ft_strncmp(argv[1], "mandelbrot", 10) == 0 && ft_strlen(argv[1]) == 10)
-		init_window(argv[1], 0.0 , 0.0);
-	else if (argc == 4 && ft_strncmp(argv[1], "julia", 5) == 0 && ft_strlen(argv[1]) == 5)
-		init_window(argv[1], ft_atod(argv[2]), ft_atod(argv[3]));
-	else
+	double	re;
+	double	pos;
+	int		i;
+
+	re = 0;
+	pos = 10;
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] && (str[i] >= '0' && str[i] <= '9') && str[i] != '.')
 	{
-		write (2, "Enter the correct args.\n", 25);
-		exit(1);
+		re = re * 10 + str[i] - '0';
+		i++;
 	}
-	return (0);
+	i++;
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		re += (double)(str[i] - '0') / pos;
+		pos *= 10;
+		i++;
+	}
+	if (str[0] == '-')
+		re *= -1;
+	return (re);
 }

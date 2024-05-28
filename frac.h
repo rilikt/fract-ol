@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:09:00 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/27 16:24:36 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:05:31 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ typedef struct s_mlx {
 	int mouse_x;
 	int mouse_y;
 	int max_iter;
+	int color;
+	double jul_x;
+	double jul_y;
+	char frac_indc;
+	t_data *img;
 }	t_mlx;
 
 typedef struct s_plane {
@@ -46,11 +51,12 @@ typedef struct s_plane {
 	double y;
 } t_frac;
 
-int init_window();
+int init_window(char *str, double x, double y);
 void better_pixel_put (t_data *data, int x, int y, int color);
-void mandelbrot(t_frac *c, t_mlx *mlx);
+void mandelbrot(t_mlx *mlx);
 int mouse_event(int keycode, int x, int y, t_mlx *mlx);
 void hooks(t_mlx *mlx);
 void map_and_zoom(t_mlx *mlx);
+double ft_atod(char *str);
 
 #endif

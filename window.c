@@ -6,28 +6,39 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:49:29 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/27 16:35:47 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:06:23 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "frac.h"
 
-int init_window()
+void init_values(t_mlx *mlx, char *indc, double x, double y)
+{
+	mlx->mv_x = 0;
+	mlx->mv_y = 0;
+	mlx->zoom = 1;
+	mlx->zoom_fac = 1;
+	mlx->mouse_x = 500;
+	mlx->mouse_y = 500;
+	mlx->max_iter = 20;
+	mlx->color = 0xFFFFFF;
+	mlx->frac_indc = indc[0];
+	if (indc[0] == 'j')
+	{
+		mlx->jul_x = x;
+		mlx->jul_y = y;
+	}
+}
+
+int init_window(char *str, double x, double y)
 {
 	t_mlx mlx;
-	t_frac c;
 
-	mlx.mv_x = 0;
-	mlx.mv_y = 0;
-	mlx.zoom = 1;
-	mlx.zoom_fac = 1;
-	mlx.mouse_x = 500;
-	mlx.mouse_y = 500;
-	mlx.max_iter = 20;
 	mlx.ptr = mlx_init();
-	mlx.win = mlx_new_window(mlx.ptr, 1000, 1000, "Mandelbrot");
+	mlx.win = mlx_new_window(mlx.ptr, 1000, 1000, str);
+	init_values(&mlx, str, x, y);
 	hooks (&mlx);
-	mandelbrot(&c, &mlx);
+	mandelbrot(&mlx);
 	mlx_loop(mlx.ptr);
 	return (0);
 }
