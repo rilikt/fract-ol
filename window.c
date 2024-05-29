@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:49:29 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/28 16:38:23 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:48:39 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void init_values(t_mlx *mlx, char *indc, double x, double y)
 	mlx->mouse_y = 500;
 	mlx->max_iter = 20;
 	mlx->color = 0;
+	mlx->color_mode = 1;
+	mlx->color_index1 = 0;
+	mlx->color_index2 = 7;
+	mlx->color_mod = 0;
 	mlx->frac_indc = indc[0];
 	if (indc[0] == 'j')
 	{

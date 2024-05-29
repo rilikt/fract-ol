@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:03:40 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/28 18:28:49 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:58:21 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int arrow_event(int keycode, t_mlx *mlx)
 	// printf("code: %d\n", keycode);
 	
 	if (keycode == 125)
-		mlx->mv_y -= 0.25 / mlx->zoom;
-	else if (keycode == 126)
 		mlx->mv_y += 0.25 / mlx->zoom;
+	else if (keycode == 126)
+		mlx->mv_y -= 0.25 / mlx->zoom;
 	else if (keycode == 124)
 		mlx->mv_x += 0.25 / mlx->zoom;
 	else if (keycode == 123)
@@ -69,6 +69,37 @@ int arrow_event(int keycode, t_mlx *mlx)
 		if (mlx->color >= 15)
 			return(0);
 		mlx->color += 1;
+	}
+	else if (keycode == 76)
+	{
+		if (mlx->color_mode)
+			mlx->color_mode = 0;
+		else
+			mlx->color_mode = 1;
+	}
+	else if (keycode == 87)
+	{
+		mlx->color_index2 += 1;
+		if (mlx->color_index2 > 7)
+			mlx->color_index2 = 0;
+	}
+	else if (keycode == 91)
+	{
+		mlx->color_index1 += 1;
+		if (mlx->color_index1 > 7)
+			mlx->color_index1 = 0;
+	}
+	else if (keycode == 86)
+	{
+		if (mlx->color_mod + mlx->color >= 15)
+			return(0);
+		mlx->color_mod += 1;
+	}
+	else if (keycode == 89)
+	{
+		if (mlx->color_mod + mlx->color != 0)
+			mlx->color_mod -= 1;
+		
 	}
 	else if (keycode == 69 || keycode == 78)
 	{

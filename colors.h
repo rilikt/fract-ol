@@ -6,13 +6,20 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:28:16 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/28 18:59:13 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:11:19 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef COLORS_H
 #define COLORS_H
+
+typedef struct s_color
+{
+	int r;
+	int g;
+	int b;
+}	t_color;
 
 	static const unsigned int palettes[][8] = {
 		{0x0000FF, 0x00FFFF, 0x00FF00, 0xFFFF00, 

@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:09:00 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/28 16:21:31 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:48:01 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-
-#define GRAY_100 0xFFFFFF
-#define GRAY_90  0xE5E5E5
-#define GRAY_75  0xBFBFBF
-#define GRAY_50  0x808080
-#define GRAY_25  0x404040
-#define GRAY_10  0x1A1A1A
-#define GRAY_0   0x000000
+#include <math.h>
 
 typedef struct	s_data {
 	int color;
@@ -49,6 +41,10 @@ typedef struct s_mlx {
 	int mouse_y;
 	int max_iter;
 	int color;
+	int color_mode;
+	int color_index1;
+	int color_index2;
+	int color_mod;
 	double jul_x;
 	double jul_y;
 	char frac_indc;
