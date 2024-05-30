@@ -6,23 +6,23 @@
 #    By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 12:29:08 by timschmi          #+#    #+#              #
-#    Updated: 2024/05/28 17:34:49 by timschmi         ###   ########.fr        #
+#    Updated: 2024/05/30 15:11:45 by timschmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRCS = main.c window.c mandelbrot.c hook.c utils.c
+SRCS = main.c window.c fractal.c hook.c utils.c error.c colors.c
 OFILES = $(SRCS:.c=.o)
 NAME = fract_ol
 EXES = $(NAME)
 
 SUBDIRS = mlx/ libft/
 
-LDFLAGS= -L./libft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit
+LDFLAGS= -L./libft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -lm
 
 CC = cc
 
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 
 all: $(SUBDIRS) $(EXES)
 

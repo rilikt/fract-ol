@@ -6,13 +6,13 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:03:40 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/29 16:58:21 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:11:22 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "frac.h"
 
-int mouse_event(int keycode, int x, int y, t_mlx *mlx)
+int	mouse_event(int keycode, int x, int y, t_mlx *mlx)
 {
 	if (keycode == 4)
 	{
@@ -27,23 +27,35 @@ int mouse_event(int keycode, int x, int y, t_mlx *mlx)
 		mlx->mouse_y = y;
 		mlx->zoom *= 0.8;
 	}
-	mandelbrot(mlx);
+	fractal(mlx);
 	return (0);
 }
 
-int exit_window(t_mlx *mlx)
+int	exit_window(t_mlx *mlx)
 {
-	// mlx_destroy_image(mlx->ptr, mlx->img);
+	mlx_destroy_image(mlx->ptr, mlx->img.img);
 	mlx_destroy_window(mlx->ptr, mlx->win);
 	free(mlx->ptr);
 	exit(1);
 	return (0);
 }
 
-int arrow_event(int keycode, t_mlx *mlx)
+int	reset_values(t_mlx *mlx)
 {
-	// printf("code: %d\n", keycode);
-	
+	mlx->zoom = 1;
+	mlx->mv_x = 0;
+	mlx->mv_y = 0;
+	mlx->max_iter = 20;
+	mlx->color = 0;
+	mlx->color_mode = 1;
+	mlx->color_index1 = 0;
+	mlx->color_index2 = 7;
+	mlx->color_mod = 0;
+	return (0);
+}
+
+int	key_event(int keycode, t_mlx *mlx)
+{
 	if (keycode == 125)
 		mlx->mv_y += 0.25 / mlx->zoom;
 	else if (keycode == 126)
@@ -53,70 +65,22 @@ int arrow_event(int keycode, t_mlx *mlx)
 	else if (keycode == 123)
 		mlx->mv_x -= 0.25 / mlx->zoom;
 	else if (keycode == 117)
-	{
-		mlx->zoom = 1;
-		mlx->mv_x = 0;
-		mlx->mv_y = 0;
-		mlx->max_iter = 20;
-	}
-	else if (keycode == 92)
-	{
-		if (mlx->color != 0)
-			mlx->color -= 1;
-	}
-	else if (keycode == 88)
-	{
-		if (mlx->color >= 15)
-			return(0);
-		mlx->color += 1;
-	}
-	else if (keycode == 76)
-	{
-		if (mlx->color_mode)
-			mlx->color_mode = 0;
-		else
-			mlx->color_mode = 1;
-	}
-	else if (keycode == 87)
-	{
-		mlx->color_index2 += 1;
-		if (mlx->color_index2 > 7)
-			mlx->color_index2 = 0;
-	}
-	else if (keycode == 91)
-	{
-		mlx->color_index1 += 1;
-		if (mlx->color_index1 > 7)
-			mlx->color_index1 = 0;
-	}
-	else if (keycode == 86)
-	{
-		if (mlx->color_mod + mlx->color >= 15)
-			return(0);
-		mlx->color_mod += 1;
-	}
-	else if (keycode == 89)
-	{
-		if (mlx->color_mod + mlx->color != 0)
-			mlx->color_mod -= 1;
-		
-	}
-	else if (keycode == 69 || keycode == 78)
-	{
-		if (keycode == 69)
-			mlx->max_iter += 10;
-		else
-			mlx->max_iter -= 10;
-	}
+		reset_values(mlx);
 	else if (keycode == 53)
 		exit_window(mlx);
-	mandelbrot(mlx);
+	else if (keycode == 69)
+		mlx->max_iter += 10;
+	else if (keycode == 78)
+		mlx->max_iter -= 10;
+	else
+		color_event(keycode, mlx);
+	fractal(mlx);
 	return (0);
 }
 
-void hooks(t_mlx *mlx)
+void	hooks(t_mlx *mlx)
 {
 	mlx_hook(mlx->win, 4, 0, &mouse_event, mlx);
 	mlx_hook(mlx->win, 17, 0, &exit_window, mlx);
-	mlx_hook(mlx->win, 2, 0, &arrow_event, mlx);
+	mlx_hook(mlx->win, 2, 0, &key_event, mlx);
 }
