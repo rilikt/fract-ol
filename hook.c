@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:03:40 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/30 15:11:22 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:39:29 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ int	key_event(int keycode, t_mlx *mlx)
 	else if (keycode == 69)
 		mlx->max_iter += 10;
 	else if (keycode == 78)
-		mlx->max_iter -= 10;
+	{
+		if (mlx->max_iter > 10)
+			mlx->max_iter -= 10;
+	}
 	else
 		color_event(keycode, mlx);
 	fractal(mlx);

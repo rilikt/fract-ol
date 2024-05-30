@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:06:50 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/29 18:31:34 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:43:55 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	error_msg(void)
 	write (2, "|        Fractals       |\n", 26);
 	write (2, "=========================\n", 26);
 	write (2, "- mandelbrot\n", 13);
-	write (2, "- julia <x> <y> / -0.8 0.156\n", 29);
+	write (2, "- julia <x> <y> / e.g. x:-0.8 y:0.156\n", 38);
 	write (2, "- burningship\n", 14);
 	write (2, "\n", 1);
 	write (2, "=========================\n", 26);
