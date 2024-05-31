@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:06:50 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/30 16:43:55 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:34:53 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	error_msg(void)
 	write (2, "- '+' '-' on Numpad / In- or Decrease calculations\n", 51);
 	write (2, "- 'Enter' on Numpad / Switch colors to gradient\n", 48);
 	write (2, "- '6' and '9' on Numpad / Change color palette\n", 47);
+	write (2, "- '5' and '8' on Numpad / Index color palette\n", 46);
+	write (2, "- '4' and '7' on Numpad / Mix color palette\n", 44);
+	write (2, "- 'Delete' / Reset to default settings\n", 39);
 	write (2, "\n", 1);
 	exit(1);
 }
