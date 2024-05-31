@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:09:00 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/31 12:14:03 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:41:26 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 # include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
 
 typedef struct s_data
