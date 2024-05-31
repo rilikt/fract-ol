@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:32:09 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/30 15:10:50 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:14:19 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,6 @@ int	calc_burn(t_frac *c, t_mlx *mlx)
 		i++;
 	}
 	return (i);
-}
-
-void	map_and_zoom(t_mlx *mlx)
-{
-	double	off_x;
-	double	off_y;
-
-	off_x = (mlx->mouse_x * (4.0 / 1000.0) - 2) / mlx->zoom + mlx->mv_x;
-	off_y = (mlx->mouse_y * (4.0 / 1000.0) - 2) / mlx->zoom + mlx->mv_y;
-	mlx->zoom *= mlx->zoom_fac;
-	mlx->mv_x = off_x - (mlx->mouse_x * (4.0 / 1000.0) - 2) / mlx->zoom;
-	mlx->mv_y = off_y - (mlx->mouse_y * (4.0 / 1000.0) - 2) / mlx->zoom;
 }
 
 void	fractal(t_mlx *mlx)

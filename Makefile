@@ -6,12 +6,12 @@
 #    By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/30 12:29:08 by timschmi          #+#    #+#              #
-#    Updated: 2024/05/30 15:11:45 by timschmi         ###   ########.fr        #
+#    Updated: 2024/05/31 12:14:53 by timschmi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRCS = main.c window.c fractal.c hook.c utils.c error.c colors.c
+SRCS = main.c window.c fractal.c hooks_events.c utils.c error.c colors.c
 OFILES = $(SRCS:.c=.o)
 NAME = fract_ol
 EXES = $(NAME)

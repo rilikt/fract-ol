@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:09:00 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/30 15:10:59 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:14:03 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void		error_msg(void);
 int			generate_color(int iter, t_mlx *mlx);
 int			color_event(int keycode, t_mlx *mlx);
 int			color_event2(int keycode, t_mlx *mlx);
+int			reset_values(t_mlx *mlx);
 
 #endif

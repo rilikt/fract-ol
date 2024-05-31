@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 15:49:29 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/30 16:17:05 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:13:44 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ void	init_values(t_mlx *mlx, char *indc, double x, double y)
 		mlx->jul_x = x;
 		mlx->jul_y = y;
 	}
+}
+
+int	reset_values(t_mlx *mlx)
+{
+	mlx->zoom = 1;
+	mlx->mv_x = 0;
+	mlx->mv_y = 0;
+	mlx->max_iter = 20;
+	mlx->color = 0;
+	mlx->color_mode = 1;
+	mlx->color_index1 = 0;
+	mlx->color_index2 = 7;
+	mlx->color_mod = 0;
+	return (0);
 }
 
 int	init_window(char *str, double x, double y)

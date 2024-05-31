@@ -6,7 +6,7 @@
 /*   By: timschmi <timschmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:03:40 by timschmi          #+#    #+#             */
-/*   Updated: 2024/05/30 16:39:29 by timschmi         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:14:31 by timschmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,24 @@ int	mouse_event(int keycode, int x, int y, t_mlx *mlx)
 	return (0);
 }
 
+void	map_and_zoom(t_mlx *mlx)
+{
+	double	off_x;
+	double	off_y;
+
+	off_x = (mlx->mouse_x * (4.0 / 1000.0) - 2) / mlx->zoom + mlx->mv_x;
+	off_y = (mlx->mouse_y * (4.0 / 1000.0) - 2) / mlx->zoom + mlx->mv_y;
+	mlx->zoom *= mlx->zoom_fac;
+	mlx->mv_x = off_x - (mlx->mouse_x * (4.0 / 1000.0) - 2) / mlx->zoom;
+	mlx->mv_y = off_y - (mlx->mouse_y * (4.0 / 1000.0) - 2) / mlx->zoom;
+}
+
 int	exit_window(t_mlx *mlx)
 {
 	mlx_destroy_image(mlx->ptr, mlx->img.img);
 	mlx_destroy_window(mlx->ptr, mlx->win);
 	free(mlx->ptr);
 	exit(1);
-	return (0);
-}
-
-int	reset_values(t_mlx *mlx)
-{
-	mlx->zoom = 1;
-	mlx->mv_x = 0;
-	mlx->mv_y = 0;
-	mlx->max_iter = 20;
-	mlx->color = 0;
-	mlx->color_mode = 1;
-	mlx->color_index1 = 0;
-	mlx->color_index2 = 7;
-	mlx->color_mod = 0;
 	return (0);
 }
 
