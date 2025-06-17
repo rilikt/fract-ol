@@ -6,6 +6,9 @@ It was a fun way to apply math and complex numbers to visuals, and also the firs
 
 ---
 
+![Fractal Screenshot](./Image)
+
+
 ## 🎯 Features
 
 - Rendered both **Mandelbrot** and **Julia** sets
